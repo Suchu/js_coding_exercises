@@ -37,11 +37,21 @@ function reverseAllWords(words) {
     words[i] = words[i].split('').reverse().join('');
   }
   return words;
+  
 }
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  // Add your code here!
+  let count = 0;
+  for ( let i = 0; i < users.length; i++) {
+    if (users[i].type === "Linux") {
+      count++; 
+    }
+    else {
+      count; 
+    }
+  }
+  return count;
 }
 
 function getMeanScore(scores) {
