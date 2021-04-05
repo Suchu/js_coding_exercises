@@ -12,18 +12,18 @@ function generateInitials(firstName, lastName) {
 function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
-  return parseFloat((originalPrice * (1 + vatRate/100)).toFixed(2).replace(/[.,]00$/, ""));
+  return parseFloat((originalPrice * (1 + vatRate / 100)).toFixed(2).replace(/[.,]00$/, ""));
 }
 
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
-  return parseFloat((originalPrice * (1 - reduction/100)).toFixed(2).replace(/[.,]00$/, ""));
+  return parseFloat((originalPrice * (1 - reduction / 100)).toFixed(2).replace(/[.,]00$/, ""));
 }
 
 function getMiddleCharacter(str) {
   if (str === undefined) throw new Error("str is required");
-  return str.length % 2 ? str.substr(str.length / 2, 1): str.substr((str.length / 2) - 1, 2);
+  return str.length % 2 ? str.substr(str.length / 2, 1) : str.substr((str.length / 2) - 1, 2);
 }
 
 function reverseWord(word) {
@@ -37,18 +37,18 @@ function reverseAllWords(words) {
     words[i] = words[i].split('').reverse().join('');
   }
   return words;
-  
+
 }
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
   let count = 0;
-  for ( let i = 0; i < users.length; i++) {
+  for (let i = 0; i < users.length; i++) {
     if (users[i].type === "Linux") {
-      count++; 
+      count++;
     }
     else {
-      count; 
+      count;
     }
   }
   return count;
@@ -60,7 +60,7 @@ function getMeanScore(scores) {
   for (let i = 0; i < scores.length; i++) {
     totalScore += scores[i];
   }
-  return parseFloat((totalScore/scores.length).toFixed(2).replace(/[.]00/, ""));
+  return parseFloat((totalScore / scores.length).toFixed(2).replace(/[.]00/, ""));
 }
 
 function simpleFizzBuzz(n) {
