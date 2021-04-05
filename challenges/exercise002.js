@@ -22,7 +22,7 @@ function countSheep(arr) {
   if (arr === undefined) throw new Error("arr is required");
   let count = 0;
   for ( let i = 0; i < arr.length; i++) {
-    if(arr[i] === "sheep") {
+    if (arr[i] === "sheep") {
       count++
     }
     else {
@@ -34,7 +34,12 @@ function countSheep(arr) {
 
 function hasMPostCode(person) {
   if (person === undefined) throw new Error("person is required");
-  // Your code here!
+  if( person.address.postCode.charAt(0) !== "M" || person.address.city !== "Manchester") {
+    return false;
+  }
+  else {
+    return true;
+  }
 }
 
 module.exports = {
