@@ -52,7 +52,6 @@ function duplicateNumbers(arr1, arr2) {
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
   let newArray = [];
-  let numsAlreadySeen = [];
   let finalArray = [];
   for (let i = 0; i < arr1.length; i++) {
     for (let j = 0; j < arr2.length; j++) {
@@ -63,8 +62,7 @@ function duplicateNumbers(arr1, arr2) {
     }
   }
   for (let k = 0; k < newArray.length; k++) {
-    if (!numsAlreadySeen.hasOwnProperty(newArray[k])) {
-      numsAlreadySeen[newArray[k]] = true;
+    if (finalArray.indexOf(newArray[k]) === -1) {
       finalArray.push(newArray[k]);
     }
   }
