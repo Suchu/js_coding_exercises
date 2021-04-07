@@ -13,8 +13,8 @@ const count1sand0s = str => {
   if (str === undefined) throw new Error("str is required");
 
   let countPlus = 0;
-  for (let i = 0; i < str.length; i++) {
-    countPlus += Number(str[i]);
+  for (let num of str) {
+    countPlus += Number(num);
   }
   return {
     1: countPlus,
@@ -24,7 +24,7 @@ const count1sand0s = str => {
 
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
-  
+
   return Number(String(n).split("").reverse().join(""));
 };
 
