@@ -4,13 +4,21 @@ const findNextNumber = (nums, n) => {
 
   return n === nums[nums.length - 1] ? null
     : nums.indexOf(n) !== -1 ? nums[(nums.indexOf(n)) + 1]
-    : n !== nums[nums.indexOf(n)] ? null
-    : null;
+      : n !== nums[nums.indexOf(n)] ? null
+        : null;
 };
 
 const count1sand0s = str => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+  
+  let countPlus = 0;
+  for (let i = 0; i < str.length; i++) {
+    countPlus += Number(str[i]);
+  }
+  return {
+    1: countPlus,
+    0: str.length - countPlus
+  };
 };
 
 const reverseNumber = n => {
