@@ -1,4 +1,4 @@
-const { sumMultiples, isValidDNA } = require("../challenges/exercise006");
+const { sumMultiples, isValidDNA, getComplementaryDNA } = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
     test("returns the sum of any numbers which are a multiple of 3 or 5", () => {
@@ -16,7 +16,7 @@ describe("sumMultiples", () => {
 
 describe("isValidDNA", () => {
     test("returns true if string of characters contain characters C, G, T or A only", () => {
-        expect(isValidDNA("gtacttacg")).toBe(true);
+        expect(isValidDNA("GTCAATG")).toBe(true);
     });
 
     test("returns false if string of characters doesn't contain characters C, G, T or A", () => {
@@ -29,5 +29,19 @@ describe("isValidDNA", () => {
 
     test("Ignore lowercase", () => {
         expect(isValidDNA("gaaccgtt")).toBe(true);
+    });
+});
+
+describe("getComplementaryDNA", () => {
+    test("returns string of characters contain characters C, G, T or A only", () => {
+        expect(getComplementaryDNA("GTACGTAAC")).toBe("CATGCATTG");
+    });
+
+    test("returns a valid DNA string of the complementry base pairs with characters C, G, T and A", () => {
+        expect(getComplementaryDNA("ACTG")).toBe("TGAC");
+    });
+
+    test("returns a invalid DNA characters", () => {
+        expect(getComplementaryDNA("MBBS")).toBe("Oops! DNA should only contain characters C, G, T and A.");
     });
 });

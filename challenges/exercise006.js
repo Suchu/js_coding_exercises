@@ -32,6 +32,22 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (str.toUpperCase().match(/^[GTAC>]*$/)) {
+    let pairObj = {
+      T: 'A',
+      A: 'T',
+      G: 'C',
+      C: 'G',
+    };
+    // Using regular expression with 'g' global search flag.
+    str = str.replace(/T|A|G|C/g, function (paired) {
+      return pairObj[paired];
+    });
+    return str;
+  }
+  else {
+    return "Oops! DNA should only contain characters C, G, T and A.";
+  }
 };
 
 /**
