@@ -1,4 +1,4 @@
-const { sumMultiples, isValidDNA, getComplementaryDNA } = require("../challenges/exercise006");
+const { sumMultiples, isValidDNA, getComplementaryDNA, isItPrime } = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
     test("returns the sum of any numbers which are a multiple of 3 or 5", () => {
@@ -43,5 +43,23 @@ describe("getComplementaryDNA", () => {
 
     test("returns a invalid DNA characters", () => {
         expect(getComplementaryDNA("MBBS")).toBe("Oops! DNA should only contain characters C, G, T and A.");
+    });
+});
+
+describe("isItPrime", () => {
+    test("returns true if number is prime number", () => {
+        expect(isItPrime(3)).toBe(true);
+    });
+
+    test("returns false if number is not a prime number", () => {
+        expect(isItPrime(4)).toBe(false);
+    });
+
+    test("returns false if number is 1", () => {
+        expect(isItPrime(1)).toBe(false);
+    });
+
+    test("returns false for negative numbers", () => {
+        expect(isItPrime(-7)).toBe(false);
     });
 });
