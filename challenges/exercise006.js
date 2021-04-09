@@ -40,7 +40,7 @@ const getComplementaryDNA = str => {
       C: 'G',
     };
     // Using regular expression with 'g' global search flag.
-    str = str.replace(/T|A|G|C/g, function (paired) {
+    str = str.replace(/T|A|G|C/g, paired => {
       return pairObj[paired];
     });
     return str;
@@ -89,7 +89,7 @@ const isItPrime = n => {
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
-  const matrixes = Array(n).fill().map(element =>
+  const matrixes = Array(n).fill().map(() =>
     Array(n).fill(fill).map(element => element));
   return matrixes;
 };
