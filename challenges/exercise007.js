@@ -38,7 +38,7 @@ const createRange = (start, end, step) => {
  *    screenTime: [
  *                 { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
  *                 { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
- *                 { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} },
+ *                 { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} }, 
  *                 { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61} },
  *                ]
  *   },
@@ -61,6 +61,24 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  if (!date.match(/(\d{4})-(\d{2})-(\d{2})/)) throw new Error("Enter valid date format YYYY-MM-DD");
+  const userNames = [];
+  let totalUsage = 0;
+  users.forEach(user => {
+    user.screenTime.forEach(time => {
+      if (time.date === date) {
+        for (let st in time.usage) {
+          if (time.usage.hasOwnProperty(st)) {
+            totalUsage += time.usage[st];
+          }
+        }
+        if (totalUsage > 100) {
+          userNames.push(user.username);
+        }
+      }
+    })
+  });
+  return userNames;
 };
 
 /**
