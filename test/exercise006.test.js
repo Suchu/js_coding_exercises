@@ -1,4 +1,4 @@
-const { sumMultiples, isValidDNA, getComplementaryDNA, isItPrime, createMatrix } = require("../challenges/exercise006");
+const { sumMultiples, isValidDNA, getComplementaryDNA, isItPrime, createMatrix, areWeCovered } = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
     test("returns the sum of any numbers which are a multiple of 3 or 5", () => {
@@ -84,5 +84,36 @@ describe("createMatrix", () => {
                 [100, 100]
             ]
         );
+    });
+});
+
+describe("areWeCovered", () => {
+    test("returns true if there are enough staff given day", () => {
+        const staff = [
+            { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
+            { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+            { name: "Emily", rota: ["Monday", "Tuesday", "Wednesday", "Friday"] },
+            { name: "Rose", rota: ["Sunday", "Tuesday", "Wednesday"] },
+        ];
+        expect(areWeCovered(staff, "Tuesday")).toBe(true);
+    });
+
+    test("returns false if there are not enough staff for given day", () => {
+        const staff = [
+            { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
+            { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+            { name: "Rose", rota: ["Sunday", "Wednesday"] },
+        ];
+        expect(areWeCovered(staff, "Tuesday")).toBe(false);
+    });
+
+    test("string should be case insensitive", () => {
+        const staff = [
+            { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
+            { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+            { name: "Emily", rota: ["Monday", "Tuesday", "Wednesday", "Friday"] },
+            { name: "Rose", rota: ["Sunday", "Tuesday", "Wednesday"] },
+        ];
+        expect(areWeCovered(staff, "wednesday")).toBe(true);
     });
 });
