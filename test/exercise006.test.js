@@ -1,4 +1,4 @@
-const { sumMultiples, isValidDNA, getComplementaryDNA, isItPrime } = require("../challenges/exercise006");
+const { sumMultiples, isValidDNA, getComplementaryDNA, isItPrime, createMatrix } = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
     test("returns the sum of any numbers which are a multiple of 3 or 5", () => {
@@ -61,5 +61,28 @@ describe("isItPrime", () => {
 
     test("returns false for negative numbers", () => {
         expect(isItPrime(-7)).toBe(false);
+    });
+});
+
+describe("createMatrix", () => {
+    test("returns arrays of given number and make a matrix with given filler of string", () => {
+        /**
+         * Received: Serializes to the same string
+         * Changed .toBe to toEqual
+         * Reason: The .toBe method tests for exact equality. In order to compare, have to use the .toEqual method.
+         */
+        expect(createMatrix(3, "foo")).toEqual(
+            [
+                ['foo', 'foo', 'foo'],
+                ['foo', 'foo', 'foo'],
+                ['foo', 'foo', 'foo']
+            ]
+        );
+        expect(createMatrix(2, 100)).toEqual(
+            [
+                [100, 100],
+                [100, 100]
+            ]
+        );
     });
 });
