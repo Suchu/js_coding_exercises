@@ -1,7 +1,8 @@
 const {
     sumDigits,
     createRange,
-    getScreentimeAlertList } = require("../challenges/exercise007");
+    getScreentimeAlertList,
+    hexToRGB } = require("../challenges/exercise007");
 
 describe("sumDigits", () => {
     test("returns the sum of all digits", () => {
@@ -100,4 +101,23 @@ describe("getScreentimeAlertList", () => {
 
         expect(getScreentimeAlertList(users, "2019-06-14")).toEqual([]);
     });
+});
+
+describe("hexToRGB", () => {
+    test("returns string of RGB code format from hex code.", () => {
+        expect(hexToRGB("#FF1133")).toBe("rgb(255,17,51)");
+    });
+
+    test("returns string of RGB code format from 3 character hex code. Example: #F13 into rgb(255,17,51)", () => {
+        expect(hexToRGB("#F13")).toBe("rgb(255,17,51)");
+    });
+
+    test("ignore blank spaces.", () => {
+        expect(hexToRGB(" #FF1133 ")).toBe("rgb(255,17,51)");
+    });
+
+    test("only support hex code format as a input.", () => {
+        expect(hexToRGB("yellow")).toBe("");
+    });
+
 });
