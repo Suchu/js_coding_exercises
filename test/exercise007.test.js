@@ -2,7 +2,8 @@ const {
     sumDigits,
     createRange,
     getScreentimeAlertList,
-    hexToRGB } = require("../challenges/exercise007");
+    hexToRGB,
+    findWinner } = require("../challenges/exercise007");
 
 describe("sumDigits", () => {
     test("returns the sum of all digits", () => {
@@ -120,4 +121,51 @@ describe("hexToRGB", () => {
         expect(hexToRGB("yellow")).toBe("");
     });
 
+});
+
+describe("findWinner", () => {
+    test("return 'X' if X player has won.", () => {
+        const board = [
+            ["X", "0", null],
+            ["X", null, "0"],
+            ["X", null, "0"]
+        ];
+        expect(findWinner(board)).toEqual("X");
+    });
+
+    test("return '0' if 0 player has won.", () => {
+        const board = [
+            ["0", null, "X"],
+            ["X", "0", "0"],
+            ["X", null, "0"]
+        ];
+        expect(findWinner(board)).toEqual("0");
+    });
+
+    test("return null if no one player has won.", () => {
+        const board = [
+            [null, null, null],
+            ["X", null, "0"],
+            ["X", null, "0"]
+        ];
+        expect(findWinner(board)).toEqual(null);
+    });
+
+    test("return 'Not finished!' if board isn't yet finished.", () => {
+        const board = [
+            [null, "X", ""],
+            ["X", "", "0"],
+            ["X", "0", "0"]
+        ];
+        expect(findWinner(board)).toEqual("Not finished!");
+    });
+
+    test("return 'Draw!' if it's a draw.", () => {
+        const board = [
+            ["X", null, "0"],
+            ["X", null, "0"],
+            ["X", "0", "0"]
+        ];
+        expect(findWinner(board)).toEqual("Draw!");
+    });
 });

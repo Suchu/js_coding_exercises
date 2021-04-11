@@ -90,26 +90,23 @@ const getScreentimeAlertList = (users, date) => {
  * "rgb(255,17,51)"
  * Hint: You will need to convert each hexadecimal value for R, G and B into its decimal equivalent!
  * @param {String} hexsStr
- * @returns {String} str
+ * @returns {String}
  */
 const hexToRGB = hexStr => {
   if (hexStr === undefined) throw new Error("hexStr is required");
   let str = "";
   hexStr = hexStr.replace(/\s/g, '');
-  if(/^#([0-9A-F]{3}){1,2}$/i.test(hexStr)) {
+  if (/^#([0-9A-F]{3}){1,2}$/i.test(hexStr)) {
     hexStr = hexStr.substr(1);
-  if (hexStr.length === 3) {
-    hexStr = hexStr.split('').map(str => str + str).join('');
+    if (hexStr.length === 3) {
+      hexStr = hexStr.split('').map(str => str + str).join('');
+    }
+    let r = parseInt(hexStr.slice(0, 2), 16),
+      g = parseInt(hexStr.slice(2, 4), 16),
+      b = parseInt(hexStr.slice(4, 6), 16);
+    str = "rgb(" + r + "," + g + "," + b + ")";
   }
-  let r = parseInt(hexStr.slice(0, 2), 16),
-    g = parseInt(hexStr.slice(2, 4), 16),
-    b = parseInt(hexStr.slice(4, 6), 16);
-    str =  "rgb(" + r + "," + g + "," + b + ")";
-  }
-
   return str;
-  
-  
 };
 
 /**
@@ -121,9 +118,66 @@ const hexToRGB = hexStr => {
  * ]
  * The function should return "X" if player X has won, "0" if the player 0 has won, and null if there is currently no winner.
  * @param {Array} board
+ * @return {String}
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+  let winner = "";
+  let hasEmpty = false;
+  let xCount = 0;
+  let oCount = 0;
+  board.forEach(row => {
+    if (row.some(spot => spot === "")) {
+      hasEmpty = true;
+    }
+    // Horizontals
+    if (row[0] === "X" && row[1] === "X" && row[2] === "X") {
+      winner = "X";
+      xCount++;
+    }
+    else if (row[0] === "0" && row[1] === "0" && row[2] === "0") {
+      winner = "0";
+      oCount++;
+    }
+  });
+  // Verticals
+  for (let i = 0; i < 3; i++) {
+    if (board[0][i] === "X" && board[1][i] === "X" && board[2][i] === "X") {
+      winner = "X";
+      xCount++;
+    }
+    else if (board[0][i] === "0" && board[1][i] === "0" && board[2][i] === "0") {
+      winner = "0";
+      oCount++;
+    }
+  }
+  // Diagonals for Xs
+  if (board[0][0] === "X" && board[1][1] === "X" && board[2][2] === "X") {
+    winner = "X";
+    xCount++;
+  }
+  else if (board[0][2] === "X" && board[1][1] === "X" && board[2][0] === "X") {
+    winner = "X";
+    xCount++
+  }
+  // Diagonals for 0s
+  else if (board[0][0] === "0" && board[1][1] === "0" && board[2][2] === "0") {
+    winner = "0";
+    oCount++;
+  }
+  else if (board[0][2] === "0" && board[1][1] === "0" && board[2][0] === "0") {
+    winner = "0";
+    oCount++;
+  }
+  if (hasEmpty) {
+    return "Not finished!";
+  } else if (xCount !== 1 && oCount !== 1) {
+    return null;
+  } else if (xCount === oCount) {
+    return "Draw!";
+  } else {
+    return winner;
+  }
 };
 
 module.exports = {
