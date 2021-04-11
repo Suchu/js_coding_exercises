@@ -68,9 +68,7 @@ const getScreentimeAlertList = (users, date) => {
     user.screenTime.forEach(time => {
       if (time.date === date) {
         for (let st in time.usage) {
-          if (time.usage.hasOwnProperty(st)) {
-            totalUsage += time.usage[st];
-          }
+          totalUsage += time.usage[st];
         }
         if (totalUsage > 100) {
           userNames.push(user.username);
