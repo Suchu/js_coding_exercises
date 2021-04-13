@@ -22,15 +22,15 @@ function camelCaseWords(words) {
 
 function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
-  let subArray = [];
-  let count = 0;
+  let allSubjects = [];
+  let countSubject = 0;
   for (let i in people) {
-    subArray[i] = people[i].subjects;
-    if (subArray[i].length !== 0) {
-      count += subArray[i].length;
+    allSubjects[i] = people[i].subjects;
+    if (allSubjects[i].length !== 0) {
+      countSubject += allSubjects[i].length;
     }
   }
-  return count;
+  return countSubject;
 }
 
 function checkIngredients(menu, ingredient) {
