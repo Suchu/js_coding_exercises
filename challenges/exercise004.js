@@ -6,15 +6,8 @@ function findSmallNums(nums) {
 function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  let firstChar = "";
-  const firstCharNames = [];
-  names.forEach(name => {
-    firstChar = name.charAt(0);
-    if (firstChar === char) {
-      firstCharNames.push(name);
-    }
-  });
-  return firstCharNames;
+  return names.filter(name => 
+    name.charAt(0) === char);
 }
 
 function findVerbs(words) {
