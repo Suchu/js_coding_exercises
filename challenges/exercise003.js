@@ -50,22 +50,22 @@ function checkIngredients(menu, ingredient) {
 function duplicateNumbers(arr1, arr2) {
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
-  let newArray = [];
-  let finalArray = [];
+  let dublicateNums = [];
+  let nonRepeatedNums = [];
   for (let i = 0; i < arr1.length; i++) {
     for (let j = 0; j < arr2.length; j++) {
       if (arr1[i] === arr2[j]) {
-        newArray.push(arr1[i]);
-        newArray.sort();
+        dublicateNums.push(arr1[i]);
+        dublicateNums.sort();
       }
     }
   }
-  for (let k = 0; k < newArray.length; k++) {
-    if (finalArray.indexOf(newArray[k]) === -1) {
-      finalArray.push(newArray[k]);
+  for (let k = 0; k < dublicateNums.length; k++) {
+    if (nonRepeatedNums.indexOf(dublicateNums[k]) === -1) {
+      nonRepeatedNums.push(dublicateNums[k]);
     }
   }
-  return finalArray;
+  return nonRepeatedNums;
 }
 
 module.exports = {
