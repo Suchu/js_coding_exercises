@@ -8,16 +8,16 @@ function getSquares(nums) {
 
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  let result = "";
+  let camelWords = "";
   for (let i = 0; i < words.length; i++) {
     if (i == 0) {
-      result += words[i].toLowerCase();
+      camelWords += words[i].toLowerCase();
     }
     else {
-      result += words[i].substr(0, 1).toUpperCase() + words[i].substr(1);
+      camelWords += words[i].substr(0, 1).toUpperCase() + words[i].substr(1);
     }
   }
-  return result;
+  return camelWords;
 }
 
 function getTotalSubjects(people) {
