@@ -6,37 +6,24 @@ function findSmallNums(nums) {
 function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  return names.filter(name => 
-    name.charAt(0) === char);
+  return names.filter(name => name.charAt(0) === char);
 }
 
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
-  const verbs = []
-  words.forEach(word => {
-    if ((word.substring(0, 3)) === "to ") {
-      verbs.push(word);
-    }
-  });
-  return verbs;
+  return words.filter(word => word.substring(0, 3) === "to ");
 }
 
 function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
-  const integers = [];
-  nums.forEach(num => {
-    if (Number.isInteger(num)) {
-      integers.push(num);
-    }
-  });
-  return integers;
+  return nums.filter(num => Number.isInteger(num));
 }
 
 function getCities(users) {
   if (!users) throw new Error("users is required");
+  // return users.filter(user => user.data.city.displayName); 
   const userCities = [];
   let cities = "";
-
   users.forEach(user => {
     cities = user.data.city.displayName;
     userCities.push(cities);
@@ -46,7 +33,6 @@ function getCities(users) {
 
 function getSquareRoots(nums) {
   if (!nums) throw new Error("nums is required");
-
   return nums.map(function (num) {
     // Fixed decimal places: Avoids type conversion. Reference https://stackoverflow.com/posts/29494612/revisions
     return Math.round(Math.sqrt(num) * 100) / 100;
@@ -56,7 +42,6 @@ function getSquareRoots(nums) {
 function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
-
   return sentences.filter(function (word) {
     if ((word.toLowerCase()).match(str.toLowerCase())) {
       return word;
@@ -66,12 +51,12 @@ function findSentencesContaining(sentences, str) {
 
 function getLongestSides(triangles) {
   if (!triangles) throw new Error("triangles is required");
-
-  const longestSides = [];
-  triangles.forEach(triangle => {
-    longestSides.push(Math.max(...triangle));
-  });
-  return longestSides;
+  return triangles.map(triangle => Math.max(...triangle));
+  // const longestSides = [];
+  // triangles.forEach(triangle => {
+  //   longestSides.push(Math.max(...triangle));
+  // });
+  // return longestSides;
 }
 
 module.exports = {
