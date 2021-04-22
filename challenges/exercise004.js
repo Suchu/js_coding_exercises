@@ -21,14 +21,7 @@ function getIntegers(nums) {
 
 function getCities(users) {
   if (!users) throw new Error("users is required");
-  // return users.filter(user => user.data.city.displayName); 
-  const userCities = [];
-  let cities = "";
-  users.forEach(user => {
-    cities = user.data.city.displayName;
-    userCities.push(cities);
-  });
-  return userCities;
+  return users.map(user => user.data.city.displayName);
 }
 
 function getSquareRoots(nums) {
