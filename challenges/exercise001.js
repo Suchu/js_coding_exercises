@@ -44,11 +44,8 @@ function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
   let count = 0;
   for (let i = 0; i < users.length; i++) {
-    if (users[i].type === "Linux") {
+    if (users[i].type.toLowerCase() === "linux") {
       count++;
-    }
-    else {
-      count;
     }
   }
   return count;
